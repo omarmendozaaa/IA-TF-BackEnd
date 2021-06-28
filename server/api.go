@@ -64,13 +64,11 @@ func New() Server {
 	r := mux.NewRouter()
 	//Habilitamos los CORS
 	enableCORS(r)
-	// --> DataSet COVID PCA TRANSFORM
-	url := "https://github.com/omarmendozaaa/IA-TF-BackEnd/blob/master/server/CovidConPAC2.csv"
+	url := "https://raw.githubusercontent.com/omarmendozaaa/IA-TF-BackEnd/master/server/CovidConPAC2.csv"
 
 	fmt.Println("Se cargó satisfactoriamente el DataSet")
 
 	DataSetLines, err := leerCSVdesdeURL(url)
-
 	if err != nil {
 		panic(err)
 	}
@@ -80,7 +78,7 @@ func New() Server {
 	for _, line := range DataSetLines {
 
 		param1, _ := strconv.ParseFloat(line[1], 64)
-		param2, _ := strconv.ParseFloat(line[3], 64)
+		param2, _ := strconv.ParseFloat(line[2], 64)
 
 		var datita Node = Node{
 			float64(param1),
